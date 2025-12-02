@@ -5,5 +5,5 @@ after completing the puzzle, I do a second pass to optimize execution time.
 
 | Part | Implementation Time | Execution Time |
 |------|---------------------|----------------|
-| 1 | 43m | 45.777 µs |
-| 2 | 15m | 223.90 µs |
+| 1 | 43m | 27.101 µs |
+| 2 | 15m | 29.103 µs |
