@@ -15,7 +15,7 @@ pub fn part_one(input: &str) -> impl Display {
     fn sum_usize_range(start_digit: usize, end_digit: usize) -> usize {
         let mut sum = 0;
         let mut num_string = String::with_capacity(12);
-        'outer: for num in start_digit..=end_digit {
+        for num in start_digit..=end_digit {
             num_string.clear();
             let mut accum = num;
             while accum > 0 {
@@ -25,22 +25,13 @@ pub fn part_one(input: &str) -> impl Display {
             let num_bytes = num_string.as_bytes();
             let digits = num_bytes.len();
 
-            for pattern_len in 1..digits / 2 + 1 {
-                if pattern_len * 2 != digits {
-                    continue;
-                }
+            if !digits.is_multiple_of(2) {
+                continue;
+            }
 
-                let mut last_pattern: &[u8] = &[];
-
-                for i in (0..digits - pattern_len + 1).step_by(pattern_len) {
-                    let pattern = &num_bytes[i..i + pattern_len];
-
-                    if last_pattern == pattern && !last_pattern.is_empty() {
-                        sum += num;
-                        continue 'outer;
-                    }
-                    last_pattern = pattern;
-                }
+            let half = digits / 2;
+            if num_string[..half] == num_string[half..] {
+                sum += num;
             }
         }
         sum
