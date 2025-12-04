@@ -59,7 +59,7 @@ pub fn part_two_bench(input: &str) -> impl Display {
 // for part one.
 fn joltage<const BATTERIES: usize>(input: &str) -> impl Display {
     let mut sum = 0;
-    // buffer that stores char data for the final joltage
+    // Buffer that stores char data for the final joltage.
     let mut buffer = [0; BATTERIES];
 
     for line in input.as_bytes().split(|c| *c == b'\n') {
@@ -75,14 +75,10 @@ fn joltage<const BATTERIES: usize>(input: &str) -> impl Display {
         for i in (0..BATTERIES).rev() {
             let mut nums_index = 0;
             let mut max = 0;
-            for (index, num) in line[biggest_num_index..line.len() - i]
-                .iter()
-                .enumerate()
-                .map(|(i, c)| (i, (c - b'0') as usize))
-            {
-                if num > max {
+            for (index, num) in line[biggest_num_index..line.len() - i].iter().enumerate() {
+                if *num > max {
                     nums_index = index;
-                    max = num;
+                    max = *num;
                 }
             }
             nums_index += biggest_num_index;
@@ -91,6 +87,8 @@ fn joltage<const BATTERIES: usize>(input: &str) -> impl Display {
             biggest_num_index = nums_index + 1;
         }
 
+        // Buffering the joltage improves performance significantly, likely because
+        // this loop is unrolled and well optimized.
         let mut accum = 0;
         for digit in buffer.iter() {
             accum *= 10;
