@@ -3,7 +3,25 @@ use criterion::{Criterion, criterion_group, criterion_main};
 use std::hint::black_box;
 
 fn criterion_benchmark(c: &mut Criterion) {
-    two(c);
+    three(c);
+}
+
+#[allow(unused)]
+fn three(c: &mut Criterion) {
+    c.bench_function("3 p1", |b| {
+        b.iter(|| {
+            let input = include_str!("../inputs/3.txt");
+            let result = days::three::part_one_bench(input);
+            black_box(result);
+        })
+    });
+    c.bench_function("3 p2", |b| {
+        b.iter(|| {
+            let input = include_str!("../inputs/3.txt");
+            let result = days::three::part_two_bench(input);
+            black_box(result);
+        })
+    });
 }
 
 #[allow(unused)]
