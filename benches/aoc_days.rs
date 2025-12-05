@@ -3,58 +3,52 @@ use criterion::{Criterion, criterion_group, criterion_main};
 use std::hint::black_box;
 
 fn criterion_benchmark(c: &mut Criterion) {
-    three(c);
+    bench(
+        c,
+        include_str!("../inputs/1.txt"),
+        1,
+        days::one::part_one,
+        days::one::part_two,
+    );
+    bench(
+        c,
+        include_str!("../inputs/2.txt"),
+        2,
+        days::two::part_one,
+        days::two::part_two,
+    );
+    bench(
+        c,
+        include_str!("../inputs/3.txt"),
+        3,
+        days::three::part_one_bench,
+        days::three::part_two_bench,
+    );
+    bench(
+        c,
+        include_str!("../inputs/4.txt"),
+        4,
+        days::four::part_one_bench,
+        days::four::part_two_bench,
+    );
 }
 
-#[allow(unused)]
-fn three(c: &mut Criterion) {
-    c.bench_function("3 p1", |b| {
+fn bench<O1, O2>(
+    c: &mut Criterion,
+    input: &str,
+    day: usize,
+    part_one: impl Fn(&str) -> O1,
+    part_two: impl Fn(&str) -> O2,
+) {
+    c.bench_function(&format!("{} p1", day), |b| {
         b.iter(|| {
-            let input = include_str!("../inputs/3.txt");
-            let result = days::three::part_one_bench(input);
+            let result = part_one(input);
             black_box(result);
         })
     });
-    c.bench_function("3 p2", |b| {
+    c.bench_function(&format!("{} p2", day), |b| {
         b.iter(|| {
-            let input = include_str!("../inputs/3.txt");
-            let result = days::three::part_two_bench(input);
-            black_box(result);
-        })
-    });
-}
-
-#[allow(unused)]
-fn two(c: &mut Criterion) {
-    c.bench_function("2 p1", |b| {
-        b.iter(|| {
-            let input = include_str!("../inputs/2.txt");
-            let result = days::two::part_one(input);
-            black_box(result);
-        })
-    });
-    c.bench_function("2 p2", |b| {
-        b.iter(|| {
-            let input = include_str!("../inputs/2.txt");
-            let result = days::two::part_two(input);
-            black_box(result);
-        })
-    });
-}
-
-#[allow(unused)]
-fn one(c: &mut Criterion) {
-    c.bench_function("1 p1", |b| {
-        b.iter(|| {
-            let input = include_str!("../inputs/1.txt");
-            let result = days::one::part_one(input);
-            black_box(result);
-        })
-    });
-    c.bench_function("1 p2", |b| {
-        b.iter(|| {
-            let input = include_str!("../inputs/1.txt");
-            let result = days::one::part_two(input);
+            let result = part_two(input);
             black_box(result);
         })
     });

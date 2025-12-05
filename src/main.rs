@@ -61,6 +61,14 @@ fn main() {
                     _ => unreachable!("What are you doing here?"),
                 }
             }
+            4 => {
+                let input = args.get_input();
+                match args.part {
+                    1 => aoc_2025::days::four::part_one(&input).to_string(),
+                    2 => aoc_2025::days::four::part_two(&input).to_string(),
+                    _ => unreachable!("What are you doing here?"),
+                }
+            }
             n if n < 12 => panic!("`{n}` does not yet have a solution :/"),
             n => panic!("There aren't even `{n}` days this year, silly!"),
         };

@@ -1,8 +1,8 @@
-use std::{collections::HashSet, fmt::Display};
+use std::collections::HashSet;
 
 // FIRST PASS
 
-pub fn part_one(input: &str) -> impl Display {
+pub fn part_one(input: &str) -> usize {
     let mut sum = 0;
     for line in input.lines() {
         let mut pairs = HashSet::new();
@@ -22,7 +22,7 @@ pub fn part_one(input: &str) -> impl Display {
     sum
 }
 
-pub fn part_two(input: &str) -> impl Display {
+pub fn part_two(input: &str) -> usize {
     let mut sum = 0;
     for line in input.lines() {
         let mut buffer = String::with_capacity(12);
@@ -47,17 +47,17 @@ pub fn part_two(input: &str) -> impl Display {
 
 // SECOND PASS
 
-pub fn part_one_bench(input: &str) -> impl Display {
+pub fn part_one_bench(input: &str) -> usize {
     joltage::<2>(input)
 }
 
-pub fn part_two_bench(input: &str) -> impl Display {
+pub fn part_two_bench(input: &str) -> usize {
     joltage::<12>(input)
 }
 
 // NOTE: Threading joltage by splitting the input in half is roughly twice as slow
 // for part one.
-fn joltage<const BATTERIES: usize>(input: &str) -> impl Display {
+fn joltage<const BATTERIES: usize>(input: &str) -> usize {
     let mut sum = 0;
     // Buffer that stores char data for the final joltage.
     let mut buffer = [0; BATTERIES];
@@ -102,23 +102,17 @@ fn joltage<const BATTERIES: usize>(input: &str) -> impl Display {
 
 #[cfg(test)]
 mod test {
-    use super::*;
-
+    const INPUT: &str = include_str!("../../inputs/3.txt");
     #[test]
     fn part_one() {
-        let input = include_str!("../../inputs/3.txt");
-        let p1 = super::part_one(input).to_string().parse::<usize>().unwrap();
-        let p1_bench = part_one_bench(input).to_string().parse::<usize>().unwrap();
-        assert_eq!(p1, p1_bench);
-        assert_eq!(p1_bench, 17535);
+        crate::test::verify_results(INPUT, &[super::part_one, super::part_one_bench], 17535);
     }
-
     #[test]
     fn part_two() {
-        let input = include_str!("../../inputs/3.txt");
-        let p2 = super::part_two(input).to_string().parse::<usize>().unwrap();
-        let p2_bench = part_two_bench(input).to_string().parse::<usize>().unwrap();
-        assert_eq!(p2, p2_bench);
-        assert_eq!(p2_bench, 173577199527257);
+        crate::test::verify_results(
+            INPUT,
+            &[super::part_two, super::part_two_bench],
+            173577199527257,
+        );
     }
 }

@@ -1,12 +1,11 @@
 use std::{
     collections::HashSet,
-    fmt::Display,
     hash::{BuildHasher, Hasher},
     sync::atomic::{AtomicUsize, Ordering},
 };
 
 // 21139440284
-pub fn part_one(input: &str) -> impl Display {
+pub fn part_one(input: &str) -> usize {
     fn sum_range(range: &str) -> usize {
         let (start, end) = range.split_once("-").unwrap();
         let start_digit = start.trim().parse::<usize>().unwrap();
@@ -51,7 +50,7 @@ pub fn part_one(input: &str) -> impl Display {
 }
 
 #[allow(unused)]
-pub fn part_one_hash(input: &str) -> impl Display {
+pub fn part_one_hash(input: &str) -> usize {
     struct FastHashBuilder;
     struct FastHash(u32);
     impl BuildHasher for FastHashBuilder {
@@ -117,7 +116,7 @@ pub fn part_one_hash(input: &str) -> impl Display {
 }
 
 // 38731915928
-pub fn part_two(input: &str) -> impl Display {
+pub fn part_two(input: &str) -> usize {
     fn sum_range(range: &str) -> usize {
         let (start, end) = range.split_once("-").unwrap();
         let start_digit = start.trim().parse::<usize>().unwrap();

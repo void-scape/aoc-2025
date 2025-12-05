@@ -1,6 +1,6 @@
-use std::{fmt::Display, slice};
+use std::slice;
 
-pub fn part_one(input: &str) -> impl Display {
+pub fn part_one(input: &str) -> i32 {
     let input = input.as_bytes();
     let mut times_zero = 0;
     let mut dial = 50;
@@ -38,7 +38,7 @@ pub fn part_one(input: &str) -> impl Display {
     }
 }
 
-pub fn part_two(input: &str) -> impl Display {
+pub fn part_two(input: &str) -> i32 {
     let input = input.as_bytes();
     let mut times_zero = 0;
     let mut dial = 50;
