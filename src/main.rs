@@ -73,7 +73,15 @@ fn main() {
                 let input = args.get_input();
                 match args.part {
                     1 => aoc_2025::days::five::part_one(&input).to_string(),
-                    2 => aoc_2025::days::five::part_two_bench(&input).to_string(),
+                    2 => aoc_2025::days::five::part_two(&input).to_string(),
+                    _ => unreachable!("What are you doing here?"),
+                }
+            }
+            6 => {
+                let input = args.get_input();
+                match args.part {
+                    1 => aoc_2025::days::six::part_one(&input).to_string(),
+                    2 => aoc_2025::days::six::part_two(&input).to_string(),
                     _ => unreachable!("What are you doing here?"),
                 }
             }

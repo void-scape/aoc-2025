@@ -35,3 +35,10 @@ after completing the puzzle, I do a second pass to optimize execution time.
 |------|---------------------|---------------------------|----------------------------|
 | 1 | 4m | 200.33 µs | 128.93 µs |
 | 2 | 51m | 551.26 µs | 25.703 µs (WOW!) |
+
+## Day 6
+
+| Part | Implementation Time | First-Pass Execution Time | Second-Pass Execution Time |
+|------|---------------------|---------------------------|----------------------------|
+| 1 | 8m | 301.94 µs | 38.983 µs |
+| 2 | 1h 3m | 564.90 µs | NA |
