@@ -45,6 +45,13 @@ fn criterion_benchmark(c: &mut Criterion) {
         days::six::part_one_bench,
         days::six::part_two_bench,
     );
+    bench(
+        c,
+        include_str!("../inputs/7.txt"),
+        7,
+        days::seven::part_one_bench,
+        days::seven::part_two_bench,
+    );
 }
 
 fn bench<O1, O2>(
