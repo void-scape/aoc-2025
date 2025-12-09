@@ -49,3 +49,10 @@ after completing the puzzle, I do a second pass to optimize execution time.
 |------|---------------------|---------------------------|----------------------------|
 | 1 | 7m | 111.49 µs | 15.652 µs |
 | 2 | 54m | 110.77 µs | 21.327 µs |
+
+## Day 8
+
+| Part | Implementation Time | First-Pass Execution Time | Second-Pass Execution Time |
+|------|---------------------|---------------------------|----------------------------|
+| 1 | 1h 59m | 70.582 ms | 18.633 ms | 
+| 2 | 20m | 2.1356 s | 19.820 ms |
