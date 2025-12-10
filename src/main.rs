@@ -96,8 +96,16 @@ fn main() {
             8 => {
                 let input = args.get_input();
                 match args.part {
-                    1 => aoc_2025::days::eight::part_one_bench(&input).to_string(),
-                    2 => aoc_2025::days::eight::part_two_bench(&input).to_string(),
+                    1 => aoc_2025::days::eight::part_one(&input).to_string(),
+                    2 => aoc_2025::days::eight::part_two(&input).to_string(),
+                    _ => unreachable!("What are you doing here?"),
+                }
+            }
+            9 => {
+                let input = args.get_input();
+                match args.part {
+                    1 => aoc_2025::days::nine::part_one(&input).to_string(),
+                    2 => aoc_2025::days::nine::part_two(&input).to_string(),
                     _ => unreachable!("What are you doing here?"),
                 }
             }
